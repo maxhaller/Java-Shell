@@ -52,11 +52,24 @@ public class Shell {
             String s;
             while ((s = in.readLine()) != null) {
                 out.print(prompt);
+                String[] parts;
+                parts = null;
+                if(s.contains("(") && s.contains(")")){
+                    parts = s.split("\\(");
+                    s = parts[0];
+                    String t = parts[1].substring(0, parts[1].length()-1);
+                    parts = t.split(", ");
+
+                }
                 try {
                     if(map.containsKey(s)) {
                         out.println("Invoking " + s);
                         out.flush();
-                        map.get(s).invoke(o);
+                        if(parts != null){
+                            map.get(s).invoke(o, (Object[]) parts);
+                        } else {
+                            map.get(s).invoke(o);
+                        }
                     } else {
                         out.println("No such command found: " + s);
                     }
