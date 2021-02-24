@@ -6,10 +6,11 @@ import Shell.*;
 // Implement Runnable and Interface
 public class Test implements Runnable, IObject {
 
+    // Declare as global Variable so that the Shall can be closed without throwing an Exception.
     Shell shell;
 
     public static void main(String[] args) {
-        // Create Instance of Object to use it in a non-static Context and run it
+        // Create Instance of Object to use it in a non-static Context and run it.
         IObject object = GenerateInstance.createTest();
         object.run();
     }
@@ -23,9 +24,9 @@ public class Test implements Runnable, IObject {
     }
 
     public void runShell(){
-        shell = new Shell(System.in, System.out); // First Construct the Shell using System.in and System.out (Console In- and Output)
-        shell.reg(this); // Register Shell with this Object so that the Shell knows in which Class it has to find annotated Methods
-        shell.setPrompt("Hi > "); // Set Prefix (Optional)
+        shell = new Shell(System.in, System.out); // First Construct the Shell using System.in and System.out (Console In- and Output).
+        shell.reg(this); // Register Shell with this Object so that the Shell knows in which Class it has to find annotated Methods.
+        shell.setPrompt("Shell > "); // Set Prefix (Optional).
         shell.run();
     }
 
@@ -47,6 +48,9 @@ public class Test implements Runnable, IObject {
         }
     }
 
+    /*
+    Some Methods to test the Functionality.
+     */
     @Command
     public void testMethod(){
         System.out.println("Test Method successfully invoked!");
@@ -55,5 +59,10 @@ public class Test implements Runnable, IObject {
     @Command
     public void printHello(){
         System.out.println("Hello!");
+    }
+
+    @Command
+    public void printString(String input){
+        System.out.println(input);
     }
 }
