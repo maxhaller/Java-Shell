@@ -1,4 +1,4 @@
-# Java Shell
+# Very basic Java Shell
 
 ### Module to convert console input into method invocations
 
